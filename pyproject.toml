@@ -5,4 +5,28 @@ description = "Add your description here"
 requires-python = ">=3.12"
 dependencies = [
     "pylint>=4.0.5",
+    "allure-pytest==2.15.3",
+    "allure-python-commons>=2.14.2",
+    "requests>=2.32.3",
+    "sqlalchemy>=2.0.41",
+    "pytest-rerunfailures==15.1",
+    "Faker==37.4.0",
+    "pytest-playwright>=0.7.0",
+    "requests-toolbelt>=1.0.0",
+    "asyncpg>=0.30.0"
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+
+[tool.uv.workspace]
+members = [
+    "venv",
 ]
