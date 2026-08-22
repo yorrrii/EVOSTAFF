@@ -19,3 +19,13 @@ def authorization_api(access_token,login,password):
     body = {"email": login,"password": password,"isRememberMe":True}
     response = requests.post(f"{access_token.stand}/api/v1/auth/login", json=body,headers=access_token.headers)
     return response
+
+@pytest.fixture(scope="function")
+def get_current_user_id(access_token):
+    response = requests.get(f"{access_token.stand}/api/v1/user/current", headers=access_token.headers)
+    return response.json()["userID"]
+
+@pytest.fixture(scope="function")
+def get_candidate(access_token,get_current_user_id):
+    response = requests.get(f"{access_token.stand}/api/v1/user/candidate/{get_current_user_id}", headers=access_token.headers)
+    return response.json()["content"][0]

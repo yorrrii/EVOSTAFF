@@ -12,7 +12,7 @@ class TestAuthorization:
     )
     def test_authorization(self,authorization_api,login,password,status):
         authorization = authorization_api
-        print(authorization)
+        print(authorization.json())
         assert authorization.status_code == status
         if authorization.status_code == 200:
             response_success = authorization.json()["success"]
